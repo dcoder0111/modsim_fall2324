@@ -59,7 +59,7 @@ function [M_tot, h] = create_classes(total_pop, size_of_class, weight)
     
     % Visualize the graph structure
     G = graph(M_tot);
-    figure;
+    % figure;
     h = plot(G, 'NodeColor', 'k', 'EdgeAlpha', 0.01);
     layout(h, 'force', 'WeightEffect', 'inverse');
 end
