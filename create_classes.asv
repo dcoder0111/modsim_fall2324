@@ -61,4 +61,5 @@ function [h] = create_classes(total_pop, size_of_class, weight)
     figure;
     h = plot(G, 'NodeColor', 'k', 'EdgeAlpha', 0.1);
     layout(h, 'force', 'WeightEffect', 'inverse');
+    
 end
