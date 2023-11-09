@@ -1,4 +1,4 @@
-function [h] = create_classes(total_pop, size_of_class, weight)   
+function [M_tot, h] = create_classes(total_pop, size_of_class, weight)   
 %create_classes Creates a graph structure representing classes within a population.
 %   [h] = create_classes(total_pop, size_of_class, weight) 
 %   create_classes generates a visual representation of a graph that depicts 
@@ -7,7 +7,7 @@ function [h] = create_classes(total_pop, size_of_class, weight)
 %   Inputs:
 %   - total_pop: Total population size.
 %   - size_of_class: Size of each class within the population.
-%   - weight: Weight value used in generating the class relationships.
+%   - weight: Weight value within smaller classes.
 %
 %   Outputs:
 %   - h: Plot handle for the graph structure.
@@ -29,7 +29,8 @@ function [h] = create_classes(total_pop, size_of_class, weight)
 %   Note: The function utilizes MATLAB's graph and plot functions to visualize the graph structure.
 
 %   Detailed explanation:
-%   The function creates a graph structure by initializing matrices to represent class connections and visualizes these connections using MATLAB's graph plotting capabilities.
+%   The function creates a graph structure by initializing matrices to represent 
+%   class connections and visualizes these connections using MATLAB's graph plotting capabilities.
 %   - total_population: Holds the total population size.
 %   - class_size: Specifies the size of each class.
 %   - num_classes: Calculates the number of classes within the population.
@@ -58,8 +59,11 @@ function [h] = create_classes(total_pop, size_of_class, weight)
     
     % Visualize the graph structure
     G = graph(M_tot);
-    figure;
-    h = plot(G, 'NodeColor', 'k', 'EdgeAlpha', 0.1);
+    % figure;
+    LWidths = 5 * G.Edges.Weight / max(G.Edges.Weight);
+    subplot(1,2,1);
+    h = plot(G, 'NodeColor', 'k','EdgeAlpha', 0.01,'LineWidth', LWidths);
     layout(h, 'force', 'WeightEffect', 'inverse');
-    
+    subplot(1,2,2);
+    heatmap(M_tot, "Title", )
 end

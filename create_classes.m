@@ -1,4 +1,4 @@
-function [M_tot, h] = create_classes(total_pop, size_of_class, weight)   
+function [M_tot, h] = create_classes(total_pop, size_of_class, weight, header)   
 %create_classes Creates a graph structure representing classes within a population.
 %   [h] = create_classes(total_pop, size_of_class, weight) 
 %   create_classes generates a visual representation of a graph that depicts 
@@ -61,6 +61,14 @@ function [M_tot, h] = create_classes(total_pop, size_of_class, weight)
     G = graph(M_tot);
     % figure;
     LWidths = 5 * G.Edges.Weight / max(G.Edges.Weight);
+    figure();
+    subplot(1,2,1);
     h = plot(G, 'NodeColor', 'k','EdgeAlpha', 0.01,'LineWidth', LWidths);
     layout(h, 'force', 'WeightEffect', 'inverse');
+    title(header);
+    x = linspace(1,100, 10);
+    y = linspace(1,100, 10);
+    subplot(1,2,2);
+    heatmap(M_tot(1:100,1:100), "Title","Heatmap Representation of Edge Weights(First 100)", 'XDisplayLabels',NaN*ones(length(M_tot(1:100,1:100)),1), "YDisplayLabels",NaN*ones(length(M_tot(1:100,1:100)),1));
+    
 end
